@@ -68,7 +68,7 @@ func (hc *heartbeat) stop() {
 func (hc *heartbeat) heartbeatMain() error {
 	glog.V(2).Info("Heartbeating!")
 	params := &url.Values{}
-	params.Add("requestId", uuid.NewV4().String())
+	params.Add("requestId", uuid.Must(uuid.NewV4()).String())
 	fullURL := fmt.Sprintf(
 		"%s://%s:%d%s", hc.restful.Protocol, hc.restful.Host, hc.restful.Port, "/session/heartbeat?"+params.Encode())
 	headers := make(map[string]string)
